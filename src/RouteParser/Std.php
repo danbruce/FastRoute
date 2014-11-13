@@ -32,7 +32,7 @@ REGEX;
         }
 
         $currentRoute = '';
-        $routeDatas = [];
+        $routeDatas = array();
         foreach ($segments as $segment) {
             if ($segment === '') {
                 throw new BadRouteException("Empty optional part");
@@ -52,19 +52,19 @@ REGEX;
             '~' . self::VARIABLE_REGEX . '~x', $route, $matches,
             PREG_OFFSET_CAPTURE | PREG_SET_ORDER
         )) {
-            return [$route];
+            return array($route);
         }
 
         $offset = 0;
-        $routeData = [];
+        $routeData = array();
         foreach ($matches as $set) {
             if ($set[0][1] > $offset) {
                 $routeData[] = substr($route, $offset, $set[0][1] - $offset);
             }
-            $routeData[] = [
+            $routeData[] = array(
                 $set[1][0],
                 isset($set[2]) ? trim($set[2][0]) : self::DEFAULT_DISPATCH_REGEX
-            ];
+            );
             $offset = $set[0][1] + strlen($set[0][0]);
         }
 

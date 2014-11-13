@@ -18,97 +18,97 @@ class StdTest extends \PhpUnit_Framework_TestCase {
     }
 
     public function provideTestParse() {
-        return [
-            [
+        return array(
+            array(
                 '/test',
-                [
-                    ['/test'],
-                ]
-            ],
-            [
+                array(
+                    array('/test'),
+                )
+            ),
+            array(
                 '/test/{param}',
-                [
-                    ['/test/', ['param', '[^/]+']],
-                ]
-            ],
-            [
+                array(
+                    array('/test/', array('param', '[^/]+')),
+                )
+            ),
+            array(
                 '/te{ param }st',
-                [
-                    ['/te', ['param', '[^/]+'], 'st']
-                ]
-            ],
-            [
+                array(
+                    array('/te', array('param', '[^/]+'), 'st')
+                )
+            ),
+            array(
                 '/test/{param1}/test2/{param2}',
-                [
-                    ['/test/', ['param1', '[^/]+'], '/test2/', ['param2', '[^/]+']]
-                ]
-            ],
-            [
+                array(
+                    array('/test/', array('param1', '[^/]+'), '/test2/', array('param2', '[^/]+'))
+                )
+            ),
+            array(
                 '/test/{param:\d+}',
-                [
-                    ['/test/', ['param', '\d+']]
-                ]
-            ],
-            [
+                array(
+                    array('/test/', array('param', '\d+'))
+                )
+            ),
+            array(
                 '/test/{ param : \d{1,9} }',
-                [
-                    ['/test/', ['param', '\d{1,9}']]
-                ]
-            ],
-            [
+                array(
+                    array('/test/', array('param', '\d{1,9}'))
+                )
+            ),
+            array(
                 '/test[opt]',
-                [
-                    ['/test'],
-                    ['/testopt'],
-                ]
-            ],
-            [
+                array(
+                    array('/test'),
+                    array('/testopt'),
+                )
+            ),
+            array(
                 '/test[/{param}]',
-                [
-                    ['/test'],
-                    ['/test/', ['param', '[^/]+']],
-                ]
-            ],
-            [
+                array(
+                    array('/test'),
+                    array('/test/', array('param', '[^/]+')),
+                )
+            ),
+            array(
                 '/{param}[opt]',
-                [
-                    ['/', ['param', '[^/]+']],
-                    ['/', ['param', '[^/]+'], 'opt']
-                ]
-            ],
-            [
+                array(
+                    array('/', array('param', '[^/]+')),
+                    array('/', array('param', '[^/]+'), 'opt')
+                )
+            ),
+            array(
                 '/test[/{name}[/{id:[0-9]+}]]',
-                [
-                    ['/test'],
-                    ['/test/', ['name', '[^/]+']],
-                    ['/test/', ['name', '[^/]+'], '/', ['id', '[0-9]+']],
-                ]
-            ],
-        ];
+                array(
+                    array('/test'),
+                    array('/test/', array('name', '[^/]+')),
+                    array('/test/', array('name', '[^/]+'), '/', array('id', '[0-9]+')),
+                )
+            ),
+        );
     }
 
     public function provideTestParseError() {
-        return [
-            [
+        return array(
+            array(
                 '/test[opt',
                 "Number of opening '[' and closing ']' does not match"
-            ],
-            [
-                '/test[opt[opt2]',
+            ),
+            array(
+                '/test[optarray[opt2]',
                 "Number of opening '[' and closing ']' does not match"
-            ],
-            [
+            ),
+            array(
                 '/testopt]',
                 "Number of opening '[' and closing ']' does not match"
-            ],
-            [
+            ),
+            array(
                 '/test[]',
                 "Empty optional part"
-            ],
-            [
+            ),
+            array(
                 '/test[[opt]]',
                 "Empty optional part"
-            ],
-        ];
+            ),
+        );
     }
 }

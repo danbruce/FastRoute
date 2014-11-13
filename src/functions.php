@@ -9,13 +9,13 @@ if (!function_exists('FastRoute\simpleDispatcher')) {
      *
      * @return Dispatcher
      */
-    function simpleDispatcher(callable $routeDefinitionCallback, array $options = []) {
-        $options += [
+    function simpleDispatcher($routeDefinitionCallback, array $options = array()) {
+        $options += array(
             'routeParser' => 'FastRoute\\RouteParser\\Std',
             'dataGenerator' => 'FastRoute\\DataGenerator\\GroupCountBased',
             'dispatcher' => 'FastRoute\\Dispatcher\\GroupCountBased',
             'routeCollector' => 'FastRoute\\RouteCollector',
-        ];
+        );
 
         /** @var RouteCollector $routeCollector */
         $routeCollector = new $options['routeCollector'](
@@ -32,14 +32,14 @@ if (!function_exists('FastRoute\simpleDispatcher')) {
      *
      * @return Dispatcher
      */
-    function cachedDispatcher(callable $routeDefinitionCallback, array $options = []) {
-        $options += [
+    function cachedDispatcher($routeDefinitionCallback, array $options = array()) {
+        $options += array(
             'routeParser' => 'FastRoute\\RouteParser\\Std',
             'dataGenerator' => 'FastRoute\\DataGenerator\\GroupCountBased',
             'dispatcher' => 'FastRoute\\Dispatcher\\GroupCountBased',
             'routeCollector' => 'FastRoute\\RouteCollector',
             'cacheDisabled' => false,
-        ];
+        );
 
         if (!isset($options['cacheFile'])) {
             throw new \LogicException('Must specify "cacheFile" option');
