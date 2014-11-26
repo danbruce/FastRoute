@@ -11,14 +11,11 @@ class GroupPosBased extends RegexBasedAbstract {
         $routeMap = array();
         $regexes = array();
         $offset = 1;
-        foreach ($regexToRoutesMap as $regex => $routes) {
-            foreach ($routes as $route) {
-                $routeMap[$offset][$route->httpMethod]
-                    = array($route->handler, $route->variables);
-            }
-
+        foreach ($regexToRoutesMap as $regex => $route) {
             $regexes[] = $regex;
-            $offset += count(reset($routes)->variables);
+            $routeMap[$offset] = array($route->handler, $route->variables);
+
+            $offset += count($route->variables);
         }
 
         $regex = '~^(?:' . implode('|', $regexes) . ')$~';

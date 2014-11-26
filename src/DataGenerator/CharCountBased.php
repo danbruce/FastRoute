@@ -14,17 +14,12 @@ class CharCountBased extends RegexBasedAbstract {
         $suffixLen = 0;
         $suffix = '';
         $count = count($regexToRoutesMap);
-        foreach ($regexToRoutesMap as $regex => $routes) {
+        foreach ($regexToRoutesMap as $regex => $route) {
             $suffixLen++;
             $suffix .= "\t";
 
-            foreach ($routes as $route) {
-                $routeMap[$suffix][$route->httpMethod] = array(
-                    $route->handler, $route->variables
-                );
-            }
-
             $regexes[] = '(?:' . $regex . '/(\t{' . $suffixLen . '})\t{' . ($count - $suffixLen) . '})';
+            $routeMap[$suffix] = array($route->handler, $route->variables);
         }
 
         $regex = '~^(?|' . implode('|', $regexes) . ')$~';
