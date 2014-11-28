@@ -1,12 +1,16 @@
 {
   "name": "danbruce/fast-route",
-  "description": "Fast request router for PHP",
+  "description": "Fast request router for PHP 5.3+",
   "keywords": ["routing", "router"],
   "license": "BSD-3-Clause",
   "authors": [
     {
       "name": "Nikita Popov",
       "email": "nikic@php.net"
+    },
+    {
+      "name": "Daniel Bruce",
+      "email": "dbruce1126@gmail.com"
     }
   ],
   "require": {
