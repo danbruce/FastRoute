@@ -4,6 +4,9 @@ FastRoute - Fast request router for PHP
 This library provides a fast implementation of a regular expression based router. [Blog post explaining how the
 implementation works and why it is fast.][blog_post]
 
+This is a fork of [nikic/FastRoute](https://github.com/nikic/FastRoute) that adds
+PHP 5.3 compatibility patches.
+
 Usage
 -----
 
