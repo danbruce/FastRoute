@@ -43,6 +43,9 @@ function cachedDispatcher($routeDefinitionCallback, array $options = array()) {
 
     if (!$options['cacheDisabled'] && file_exists($options['cacheFile'])) {
         $dispatchData = require $options['cacheFile'];
+        if (!is_array($dispatchData)) {
+            throw new \RuntimeException('Invalid cache file "' . $options['cacheFile'] . '"');
+        }
         return new $options['dispatcher']($dispatchData);
     }
 
