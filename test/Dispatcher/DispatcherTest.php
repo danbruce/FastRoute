@@ -298,15 +298,15 @@ abstract class DispatcherTest extends \PHPUnit_Framework_TestCase {
         // 14 ---- Handle multiple methods with the same handler ---------------------------------->
 
         $callback = function(RouteCollector $r) {
-            $r->addRoute(['GET', 'POST'], '/user', 'handlerGetPost');
-            $r->addRoute(['DELETE'], '/user', 'handlerDelete');
-            $r->addRoute([], '/user', 'handlerNone');
+            $r->addRoute(array('GET', 'POST'), '/user', 'handlerGetPost');
+            $r->addRoute(array('DELETE'), '/user', 'handlerDelete');
+            $r->addRoute(array(), '/user', 'handlerNone');
         };
 
-        $argDict = [];
-        $cases[] = ['GET', '/user', $callback, 'handlerGetPost', $argDict];
-        $cases[] = ['POST', '/user', $callback, 'handlerGetPost', $argDict];
-        $cases[] = ['DELETE', '/user', $callback, 'handlerDelete', $argDict];
+        $argDict = array();
+        $cases[] = array('GET', '/user', $callback, 'handlerGetPost', $argDict);
+        $cases[] = array('POST', '/user', $callback, 'handlerGetPost', $argDict);
+        $cases[] = array('DELETE', '/user', $callback, 'handlerDelete', $argDict);
 
 
         // x -------------------------------------------------------------------------------------->
@@ -451,12 +451,12 @@ abstract class DispatcherTest extends \PHPUnit_Framework_TestCase {
         // 4 -------------------------------------------------------------------------------------->
 
         $callback = function(RouteCollector $r) {
-            $r->addRoute(['GET', 'POST'], '/user', 'handlerGetPost');
-            $r->addRoute(['DELETE'], '/user', 'handlerDelete');
-            $r->addRoute([], '/user', 'handlerNone');
+            $r->addRoute(array('GET', 'POST'), '/user', 'handlerGetPost');
+            $r->addRoute(array('DELETE'), '/user', 'handlerDelete');
+            $r->addRoute(array(), '/user', 'handlerNone');
         };
 
-        $cases[] = ['PUT', '/user', $callback, ['GET', 'POST', 'DELETE']];
+        $cases[] = array('PUT', '/user', $callback, array('GET', 'POST', 'DELETE'));
 
         // x -------------------------------------------------------------------------------------->
 
