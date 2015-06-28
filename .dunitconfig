@@ -13,6 +13,6 @@ checkSyntax="true";
 syntaxCommand="find /opt/source -type f -name \"*.php\" !  -path \"*/vendor/*\" -print0 | xargs -0 -n 1 -P 8 php -l | grep -v 'No syntax errors'"
 
 ; a flag indicating whether to run the phpunit test suite
-runTests="false";
+runTests="true";
 ; the phpunit command to execute
 unitTestsCommand="/opt/source/vendor/bin/phpunit"
