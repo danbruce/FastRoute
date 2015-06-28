@@ -25,4 +25,3 @@ class GroupCountBased extends RegexBasedAbstract {
         return array('regex' => $regex, 'routeMap' => $routeMap);
     }
 }
-

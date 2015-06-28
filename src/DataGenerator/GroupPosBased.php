@@ -22,4 +22,3 @@ class GroupPosBased extends RegexBasedAbstract {
         return array('regex' => $regex, 'routeMap' => $routeMap);
     }
 }
-
